@@ -2,9 +2,31 @@
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="col-6">
-      <h2><%= post.title %></h2>
+      <h2><%= post.location %></h2>
       <img class="img-fluid" src="<%= post.image%>" />
       <div class="row justify-content-between">
+        <div class="description">
+          <div class="col-3 mt-5">
+            <p>Address</p>
+            <p><%= post.address %></p>
+          </div>
+          <div class="col-3 mt-5">
+            <p>Hours</p>
+            <p><%= post.hours %></p>
+          </div>
+          <div class="col-3 mt-5">
+            <p>Power Outlets?</p>
+            <p><%= post.outlet %></p>
+          </div>
+          <div class="col-3 mt-5">
+            <p>Free Wi-Fi?</p>
+            <p><%= post.wifi %></p>
+          </div>
+          <div class="col-3 mt-5">
+            <p>Bathrooms?</p>
+            <p><%= post.bathroom %></p>
+          </div>
+        </div>
         <form
           class="col-1"
           action="/post/likePost/<%= post.id %>?_method=PUT"
@@ -23,9 +45,6 @@
         </form>
         <%}%>
       </div>
-    </div>
-    <div class="col-3 mt-5">
-      <p><%= post.caption %></p>
     </div>
     <div class="col-6 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>

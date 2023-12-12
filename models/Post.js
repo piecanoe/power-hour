@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
-  title: {
+  location: {
     type: String,
     required: true,
   },
@@ -13,7 +13,23 @@ const PostSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  caption: {
+  address: {
+    type: String,
+    required: true,
+  },
+  hours: {
+    type: String,
+    required: true,
+  },
+  outlet: {
+    type: String,
+    required: true,
+  },
+  wifi: {
+    type: String,
+    required: true,
+  },
+  bathroom: {
     type: String,
     required: true,
   },
