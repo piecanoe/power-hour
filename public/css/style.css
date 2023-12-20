@@ -1,0 +1,53 @@
+.main-section {
+    display: flex;
+    gap: 40px;
+}
+.details-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.img-fluid {
+    max-width: 450px;
+}
+
+.fav-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+
+}
+
+.description {
+    max-width: 300px;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.detail-title {
+    font-weight: 700;
+}
+
+
+.return-buttons {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+#map-container {
+    width: 100%;
+    height: 100%;
+}
