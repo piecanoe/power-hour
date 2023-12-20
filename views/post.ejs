@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row justify-content-left mt-5">
     <h2><%= post.location %></h2>
-    <p><%= post.address %></p>
+    <p class="address"><%= post.address %></p>
     <div class="main-section">
       <div class="details-section">
         <div class="row justify-content-between">
@@ -54,31 +54,32 @@
     <div id="map-container"></div>
 
     <script>
-        // Assuming post.location contains the address
-        const address = '<%= post.location %>';
-
         function updateMap() {
-            const mapContainer = document.getElementById('map-container');
+        const mapContainer = document.getElementById('map-container');
 
-            // Remove existing iframe if any
-            while (mapContainer.firstChild) {
-                mapContainer.removeChild(mapContainer.firstChild);
-            }
+        // Get the content of the element with class "address"
+        const addressElement = document.querySelector('.address');
+        const address = addressElement.textContent.trim();
 
-            const iframe = document.createElement('iframe');
-            iframe.src = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13205.34352471949!2d-118.28226456044922!3d34.16332919999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c047dbc413c7%3A0x6750e47715aa755b!2s${encodeURIComponent(address)}!5e0!3m2!1sen!2sus!4v1703029225921!5m2!1sen!2sus`;
-            iframe.width = '100%';
-            iframe.height = '100%';
-            iframe.style.border = '0';
-            iframe.allowfullscreen = true;
-            iframe.loading = 'lazy';
-            iframe.referrerpolicy = 'no-referrer-when-downgrade';
-
-            mapContainer.appendChild(iframe);
+        // Remove existing iframe if any
+        while (mapContainer.firstChild) {
+            mapContainer.removeChild(mapContainer.firstChild);
         }
 
-        // Call the updateMap function
-        updateMap();
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13205.34352471949!2d-118.28226456044922!3d34.16332919999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c047dbc413c7%3A0x6750e47715aa755b!2s${encodeURIComponent(address)}!5e0!3m2!1sen!2sus!4v1703029225921!5m2!1sen!2sus`;
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.style.border = '0';
+        iframe.allowfullscreen = true;
+        iframe.loading = 'lazy';
+        iframe.referrerpolicy = 'no-referrer-when-downgrade';
+
+        mapContainer.appendChild(iframe);
+    }
+
+    // Call the updateMap function
+    updateMap();
     </script>
 
     </div>
