@@ -1,39 +1,48 @@
 <%- include('partials/header') -%>
 <div class="container">
   <div class="row mt-5">
-      <div class="col-6">
-          <div class="mt-5">
-            <h2>Add a spot</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="location-name" class="form-label">Location Name</label>
-                  <input type="text" class="form-control" id="location" name="title">
-              </div>
-              <div class="mb-3">
-                <label for="caption" class="form-label">Address</label>
-                <textarea class="form-control" id="caption" name="address"></textarea>
-              </div>
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
+    <div class="col-6">
+      <div class="mt-5">
+        <h2>Add a spot</h2>
+        <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+          <div class="mb-3">
+            <label for="location" class="form-label">Location Name</label>
+            <input type="text" class="form-control" id="location" name="location">
           </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" name="address"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="imageUpload" class="form-label">Image</label>
+            <input type="file" class="form-control" id="imageUpload" name="image" accept="image/*">
+          </div>
+          <!-- Include the missing fields -->
+          <div class="mb-3">
+            <label for="hours" class="form-label">Hours</label>
+            <input type="text" class="form-control" id="hours" name="hours">
+          </div>
+          <div class="mb-3">
+            <label for="outlet" class="form-label">Outlet Availability</label>
+            <input type="text" class="form-control" id="outlet" name="outlet">
+          </div>
+          <div class="mb-3">
+            <label for="wifi" class="form-label">WiFi Availability</label>
+            <input type="text" class="form-control" id="wifi" name="wifi">
+          </div>
+          <div class="mb-3">
+            <label for="bathroom" class="form-label">Bathroom Availability</label>
+            <input type="text" class="form-control" id="bathroom" name="bathroom">
+          </div>
+          <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+        </form>
       </div>
-      <div class="col-6">
-        <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
-            </a>
-          </li>
-        <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
-      </div>  
+    </div>
+    <div class="col-6">
+      <!-- Content for the second column goes here -->
+      <div class="row justify-content-center mt-5">
+        <a class="btn btn-primary" href="/feed">Return to Feed</a>
+      </div>
     </div>
   </div>
 </div>
