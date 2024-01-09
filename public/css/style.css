@@ -1,3 +1,17 @@
+/* HEADER */
+header {
+    background: #B6FF00;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.header-logo{
+    width: 100px;
+}
+
+/* MAIN */
+
 .main-section {
     display: flex;
     gap: 40px;
@@ -14,7 +28,7 @@
 }
 
 .img-fluid {
-    max-width: 450px;
+    max-width: 350px;
 }
 
 .fav-buttons {
