@@ -1,6 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 
+
 module.exports = {
   getProfile: async (req, res) => {
     try {
@@ -10,6 +11,7 @@ module.exports = {
       console.log(err);
     }
   },
+ 
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
@@ -29,7 +31,9 @@ module.exports = {
   createPost: async (req, res) => {
     try {
       // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "power-hour",
+      });
 
       await Post.create({
         location: req.body.location,

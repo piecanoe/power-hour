@@ -7,7 +7,7 @@
       <div class="details-section">
         <div class="row justify-content-between">
           <div class="img-section">
-            <img class="img-fluid" src="<%= post.image%>" />
+            <img class="img-fluid" src="<%= post.image %>" />
             <div class="fav-buttons">
               <form
                 class="col-1"
@@ -17,15 +17,15 @@
                 <button class="btn btn-primary fa fa-heart" type="submit"></button>
                 <h3 class="col-3"><%= post.likes %></h3>
               </form>
-              <%if(post.user == user.id){ %>
-              <form
-                action="/post/deletePost/<%= post.id %>?_method=DELETE"
-                method="POST"
-                class="col-1"
-              >
-                <button class="btn btn-primary fa fa-trash" type="submit"></button>
-              </form>
-              <%}%>
+              <% if (post.user == user.id) { %>
+                <form
+                  action="/post/deletePost/<%= post.id %>?_method=DELETE"
+                  method="POST"
+                  class="col-1"
+                >
+                  <button class="btn btn-primary fa fa-trash" type="submit"></button>
+                </form>
+              <% } %>
             </div>
           </div>
         </div>
@@ -50,38 +50,46 @@
           </div>
         </div>
       </div>
-      
-    <div id="map-container"></div>
 
-    <script>
-        function updateMap() {
-        const mapContainer = document.getElementById('map-container');
+      <div id="map-container" style="height: 100%; width: 100%;"></div>
 
-        // Get the content of the element with class "address"
-        const addressElement = document.querySelector('.address');
-        const address = addressElement.textContent.trim();
+      <% if (post.address) { %>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script>
+          document.addEventListener('DOMContentLoaded', async function () {
+            const addressElement = document.querySelector('.address');
+            const address = addressElement.innerText;
 
-        // Remove existing iframe if any
-        while (mapContainer.firstChild) {
-            mapContainer.removeChild(mapContainer.firstChild);
-        }
+            const nominatimApiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
 
-        const iframe = document.createElement('iframe');
-        iframe.src = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13205.34352471949!2d-118.28226456044922!3d34.16332919999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c047dbc413c7%3A0x6750e47715aa755b!2s${encodeURIComponent(address)}!5e0!3m2!1sen!2sus!4v1703029225921!5m2!1sen!2sus`;
-        iframe.width = '100%';
-        iframe.height = '100%';
-        iframe.style.border = '0';
-        iframe.allowfullscreen = true;
-        iframe.loading = 'lazy';
-        iframe.referrerpolicy = 'no-referrer-when-downgrade';
+            try {
+              const response = await fetch(nominatimApiUrl);
+              const data = await response.json();
 
-        mapContainer.appendChild(iframe);
-    }
+              console.log('Nominatim API response:', data);
 
-    // Call the updateMap function
-    updateMap();
-    </script>
+              if (data && data.length > 0) {
+                const coordinates = [data[0].lat, data[0].lon];
+                console.log('Coordinates from Nominatim:', coordinates);
 
+                const zoomLevel = 18;
+
+                // Create Leaflet map
+                const map = L.map('map-container').setView(coordinates, zoomLevel);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+                L.marker(coordinates).addTo(map);
+
+                console.log('Leaflet map initialized');
+
+              } else {
+                console.error('No coordinates found in Nominatim API response');
+              }
+            } catch (error) {
+              console.error('Error geocoding address:', error);
+            }
+          });
+        </script>
+      <% } %>
     </div>
     <div class="return-buttons">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
