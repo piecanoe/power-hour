@@ -28,31 +28,42 @@ module.exports = {
       console.log(err);
     }
   },
+ 
+  createPostPage: (req, res) => {
+    res.render("createpost");
+  },
+
   createPost: async (req, res) => {
     try {
+      const outlet = req.body.outlet === 'on';
+      const wifi = req.body.wifi === 'on';
+      const bathroom = req.body.bathroom === 'on';
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path, {
         folder: "power-hour",
       });
 
       await Post.create({
+        // Populate post data from the form
         location: req.body.location,
         image: result.secure_url,
         cloudinaryId: result.public_id,
         address: req.body.address,
         hours: req.body.hours,
-        outlet: req.body.outlet,
-        wifi: req.body.wifi,
-        bathroom: req.body.bathroom,
+        outlet: outlet,
+        wifi: wifi,
+        bathroom: bathroom,
         likes: 0,
         user: req.user.id,
       });
+
       console.log("Post has been added!");
-      res.redirect("/profile");
+      res.redirect("feed");
     } catch (err) {
       console.log(err);
     }
   },
+
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(

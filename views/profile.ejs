@@ -1,45 +1,12 @@
 <%- include('partials/header') -%>
 <div class="container">
   <div class="row mt-5">
-      <div class="col">
+      <div class="card">
           <div>
               <p><strong>Username</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
+              <!-- <p><strong>Email</strong>: <%= user.email %></p> -->
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-          </div>
-          <div class="mt-5">
-            <h2>Add a spot</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="location" class="form-label">Location Name</label>
-                  <input type="text" class="form-control" id="location" name="location">
-              </div>
-              <div class="mb-3">
-                <label for="address" class="form-label">Address</label>
-                <textarea class="form-control" id="address" name="address"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="hours" class="form-label">Hours</label>
-                <textarea class="form-control" id="hours" name="hours"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="outlet" class="form-label">Power Outlets?</label>
-                <input type="text" class="form-control" id="outlet" name="outlet">
-            </div>
-            <div class="mb-3">
-              <label for="wifi" class="form-label">Free Wi-Fi?</label>
-              <input type="text" class="form-control" id="wifi" name="wifi">
-          </div>
-          <div class="mb-3">
-            <label for="bathroom" class="form-label">Bathrooms?</label>
-            <input type="text" class="form-control" id="bathroom" name="bathroom">
-        </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
+              <a href="/createpost">Make a Post</a>
           </div>
       </div>
       <div class="col">
