@@ -1,7 +1,7 @@
 {
-  "name": "binary-upload-boom",
+  "name": "power-hour",
   "version": "1.0.0",
-  "description": "100Devs Social Network",
+  "description": "Stay Charged",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
