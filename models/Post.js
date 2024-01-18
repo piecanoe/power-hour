@@ -22,16 +22,19 @@ const PostSchema = new mongoose.Schema({
     required: true,
   },
   outlet: {
-    type: String,
+    type: Boolean,
     required: true,
+    default: false,
   },
   wifi: {
-    type: String,
+    type: Boolean,
     required: true,
+    default: false,
   },
   bathroom: {
-    type: String,
+    type: Boolean,
     required: true,
+    default: false,
   },
   likes: {
     type: Number,
