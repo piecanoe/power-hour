@@ -11,6 +11,10 @@ header {
     width: 100px;
 }
 
+.navbar .nav-link{
+    color: gb(106,1,254);
+}
+
 /* MAIN */
 
 .main-section {
